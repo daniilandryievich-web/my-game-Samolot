@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latające Samoloty - Arcade Game</title>
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Meta tags for SEO best practices -->
+    <meta name="description" content="Dynamiczna gra zręcznościowa z latającymi samolotami w formacie HTML5 Canvas. Zbieraj punkty i omijaj przeszkody!">
+</head>
+<body>
+    <div id="game-container">
+        <!-- The Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI Overlay -->
+        <div id="ui-overlay" class="glass-panel">
+            <!-- Main Menu -->
+            <div id="main-menu" class="screen active">
+                <h1 class="title">Latające<br>Samoloty</h1>
+                <p class="subtitle">Zestrzel jak najwięcej przeszkód i przetrwaj!</p>
+                <div class="controls-info">
+                    <p><span>WSAD / Strzałki</span> - Sterowanie</p>
+                    <p><span>Spacja</span> - Strzał</p>
+                </div>
+                <button id="start-btn" class="primary-btn">Graj Teraz</button>
+            </div>
+
+            <!-- In-Game HUD -->
+            <div id="hud" class="screen">
+                <div class="hud-top">
+                    <div class="score-box">Punkty: <span id="score">0</span></div>
+                    <div class="health-box">Życia: <span id="lives">3</span></div>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="game-over" class="screen">
+                <h2 class="game-over-title">Koniec Gry</h2>
+                <p class="final-score">Twój wynik: <span id="final-score-value">0</span></p>
+                <button id="restart-btn" class="primary-btn">Zagraj Ponownie</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

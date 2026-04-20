@@ -1,0 +1,223 @@
+/* Reset and Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    background-color: #0b0c10;
+    color: #fff;
+}
+
+/* Container */
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%);
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Subtle glow around the canvas area if you wanted it bordered, but we'll make it fullscreen */
+}
+
+/* UI Overlay Container */
+#ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to canvas by default */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glassmorphism Panel styles for screens */
+.screen {
+    position: absolute;
+    pointer-events: auto; /* Enable clicks inside panels */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem 4rem;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    visibility: hidden;
+    z-index: 10;
+}
+
+.screen.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+}
+
+/* Typography */
+.title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(79, 172, 254, 0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+.game-over-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 8, 68, 0.5);
+}
+
+.final-score {
+    font-size: 1.5rem;
+    color: #e2e8f0;
+    margin-bottom: 2rem;
+}
+
+.final-score span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4facfe;
+}
+
+/* Instructions */
+.controls-info {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.controls-info p {
+    margin: 0.5rem 0;
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.controls-info span {
+    color: #fff;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+}
+
+/* Buttons */
+.primary-btn {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(0, 242, 254, 0.4);
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(0, 242, 254, 0.3);
+}
+
+/* HUD */
+#hud {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+.hud-top {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.score-box, .health-box {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #cbd5e1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.score-box span {
+    color: #4facfe;
+}
+
+.health-box span {
+    color: #ff0844;
+}
+
+/* Micro-animations */
+@keyframes pulseGlow {
+    0% { text-shadow: 0 0 20px rgba(79, 172, 254, 0.4); }
+    50% { text-shadow: 0 0 40px rgba(79, 172, 254, 0.8); }
+    100% { text-shadow: 0 0 20px rgba(79, 172, 254, 0.4); }
+}
+
+.title {
+    animation: pulseGlow 3s infinite;
+}
