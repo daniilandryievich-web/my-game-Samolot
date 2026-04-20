@@ -111,6 +111,9 @@ function startGame() {
     STATE.health = 100;
     STATE.speed = 100;
     
+    startBtn.blur();
+    restartBtn.blur();
+    
     // Zaktualizuj UI
     uiStart.classList.add('hidden');
     uiGameOver.classList.add('hidden');
